@@ -1,12 +1,12 @@
-import sqlite3 from 'better-sqlite3';
 import {camelCase, mapKeys, mapValues, partition, snakeCase} from 'lodash';
+import sqlite3 from 'sqlite3';
 
 import {EntityFK, Playlist, PlaylistEntry, Track} from 'src/entities';
 
 import {generateSchema} from './schema';
 
 /**
- * Table names availble
+ * Table names available
  */
 export enum Table {
   Artist = 'artist',
@@ -41,7 +41,7 @@ const trackRelationTableMap: Record<string, string> = {
 };
 
 /**
- * Object Relation Mapper as an abstraction ontop of a local database
+ * Object Relation Mapper as an abstraction on top of a local database
  * connection.
  *
  * May be used to populate a metadata database and query objects.
@@ -50,7 +50,7 @@ export class MetadataORM {
   #conn: sqlite3.Database;
 
   constructor() {
-    this.#conn = sqlite3(':memory:');
+    this.#conn = new sqlite3.Database(':memory:');
     this.#conn.exec(generateSchema());
   }
 
@@ -59,7 +59,7 @@ export class MetadataORM {
   }
 
   /**
-   * Insert a entity object into the database.
+   * Insert an entity object into the database.
    */
   insertEntity(table: Table, object: Record<string, any>) {
     const fields = Object.entries<any>(object);
@@ -68,7 +68,7 @@ export class MetadataORM {
     const columns = fields.map(f => snakeCase(f[0])).join(', ');
 
     const stmt = this.#conn.prepare(
-      `insert into ${table} (${columns}) values (${slots})`
+      `INSERT INTO ${table} (${columns}) VALUES (${slots})`
     );
 
     // Translate date and booleans
@@ -88,10 +88,10 @@ export class MetadataORM {
    */
   findTrack(id: number): Track {
     const row: Record<string, any> = this.#conn
-      .prepare(`select * from ${Table.Track} where id = ?`)
-      .get(id);
+      .prepare(`SELECT * FROM ${Table.Track} WHERE id = ?`)
+      .get(id) as Record<string, any>;
 
-    // Map row columns to camel case compatability
+    // Map row columns to camel case compatibility
     const trackRow = mapKeys(row, (_, k) => camelCase(k)) as Track<EntityFK.WithFKs>;
 
     trackRow.beatGrid = null;
@@ -102,7 +102,7 @@ export class MetadataORM {
     trackRow.autoloadHotcues = !!trackRow.autoloadHotcues;
     trackRow.kuvoPublic = !!trackRow.kuvoPublic;
 
-    // Explicity restore date objects
+    // Explicitly restore date objects
     trackRow.analyzeDate = new Date(trackRow.analyzeDate as any);
     trackRow.dateAdded = new Date(trackRow.dateAdded as any);
 
@@ -124,8 +124,8 @@ export class MetadataORM {
       }
 
       const relationItem: Record<string, any> = this.#conn
-        .prepare(`select * from ${table} where id = ?`)
-        .get(fk);
+        .prepare(`SELECT * FROM ${table} WHERE id = ?`)
+        .get(fk) as Record<string, any>;
 
       track[relation] = relationItem;
     }
@@ -137,18 +137,18 @@ export class MetadataORM {
    * Query for a list of {folders, playlists, tracks} given a playlist ID. If
    * no ID is provided the root list is queried.
    *
-   * Note that when tracks are returned there will be no folders or playslists.
+   * Note that when tracks are returned there will be no folders or playlists.
    * But the API here is simpler to assume there could be.
    *
    * Tracks are returned in the order they are placed on the playlist.
    */
   findPlaylist(playlistId?: number) {
-    const parentCondition = playlistId === undefined ? 'parent_id is ?' : 'parent_id = ?';
+    const parentCondition = playlistId === undefined ? 'parent_id IS ?' : 'parent_id = ?';
 
     // Lookup playlists / folders for this playlist ID
     const playlistRows: Array<Record<string, any>> = this.#conn
-      .prepare(`select * from ${Table.Playlist} where ${parentCondition}`)
-      .all(playlistId);
+      .prepare(`SELECT * FROM ${Table.Playlist} WHERE ${parentCondition}`)
+      .all(playlistId) as unknown as Array<Record<string, any>>;
 
     const [folders, playlists] = partition(
       playlistRows.map(row => mapKeys(row, (_, k) => camelCase(k)) as Playlist),
@@ -156,8 +156,8 @@ export class MetadataORM {
     );
 
     const entryRows: Array<Record<string, any>> = this.#conn
-      .prepare(`select * from ${Table.PlaylistEntry} where playlist_id = ?`)
-      .all(playlistId);
+      .prepare(`SELECT * FROM ${Table.PlaylistEntry} WHERE playlist_id = ?`)
+      .all(playlistId) as unknown as Array<Record<string, any>>;
 
     const trackEntries = entryRows.map(
       row => mapKeys(row, (_, k) => camelCase(k)) as PlaylistEntry<EntityFK.WithFKs>
