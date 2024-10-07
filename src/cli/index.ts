@@ -7,7 +7,7 @@ import {MixstatusProcessor} from 'src/mixstatus';
 import {bringOnline} from 'src/network';
 
 Sentry.init({
-  dsn: 'https://36570041fd5a4c05af76456e60a1233a@o126623.ingest.sentry.io/5205486',
+  dsn: 'https://089b06505ab671b5893831cd570ee9c5@o4503924953710592.ingest.us.sentry.io/4508082881429504',
   tracesSampleRate: 1,
 });
 
