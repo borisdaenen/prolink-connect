@@ -131,7 +131,6 @@ class DeviceManager {
 
   #handleAnnounce = (message: Buffer) => {
     const device = deviceFromPacket(message);
-    console.log("#handleAnnounce device", device);
 
     if (device === null) {
       return;
