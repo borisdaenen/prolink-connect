@@ -20,7 +20,7 @@ export declare enum DeviceType {
 /**
  * The 8-bit identifier of the device on the network
  */
-export declare type DeviceID = number;
+export type DeviceID = number;
 /**
  * Represents a device on the prolink network.
  */
@@ -31,7 +31,7 @@ export interface Device {
     macAddr: Uint8Array;
     ip: Address4;
     lastActive?: Date;
-    enableCDJ3000Compatibility: boolean;
+    enableCDJ3000Compatibility?: boolean;
 }
 /**
  * Details of a particular media slot on the CDJ
@@ -117,7 +117,7 @@ export declare enum TrackType {
  * A beat grid is a series of offsets from the start of the track. Each offset
  * indicates what count within the measure it is along with the BPM.
  */
-export declare type BeatGrid = Array<{
+export type BeatGrid = Array<{
     /**
      * Offset from the beginning of track in milliseconds of this beat.
      */
@@ -162,17 +162,17 @@ interface WaveformHDSegment {
 /**
  * The waveform preview will be 400 segments of data.
  */
-export declare type WaveformPreview = WaveformSegment[];
+export type WaveformPreview = WaveformSegment[];
 /**
  * Detailed waveforms have 150 segments per second of audio (150 'half frames'
  * per second of audio).
  */
-export declare type WaveformDetailed = WaveformSegment[];
+export type WaveformDetailed = WaveformSegment[];
 /**
  * HD waveforms have 150 segments per second of audio (150 'half frames' per
  * second of audio).
  */
-export declare type WaveformHD = WaveformHDSegment[];
+export type WaveformHD = WaveformHDSegment[];
 /**
  * The result of looking up track waveforms
  */
@@ -238,11 +238,11 @@ export interface CuePoint {
      */
     color?: CueColor;
 }
-declare type BareCuePoint = Omit<CuePoint, 'type'>;
+type BareCuePoint = Omit<CuePoint, 'type'>;
 /**
  * A loop, similar to a cue point, but includes a length.
  */
-export declare type Loop = BareCuePoint & {
+export type Loop = BareCuePoint & {
     type: 'loop';
     /**
      * The length in milliseconds of the loop
@@ -252,7 +252,7 @@ export declare type Loop = BareCuePoint & {
 /**
  * A hotcue is like a cue point, but also includes the button it is assigned to.
  */
-export declare type Hotcue = BareCuePoint & {
+export type Hotcue = BareCuePoint & {
     type: 'hot_cue';
     /**
      * Which hotcue button this hotcue is assigned to.
@@ -262,10 +262,10 @@ export declare type Hotcue = BareCuePoint & {
 /**
  * A hot loop, this is the union of a hotcue and a loop.
  */
-export declare type Hotloop = {
+export type Hotloop = {
     type: 'hot_loop';
 } & (Omit<Hotcue, 'type'> & Omit<Loop, 'type'>);
-export declare type CueAndLoop = CuePoint | Loop | Hotcue | Hotloop;
+export type CueAndLoop = CuePoint | Loop | Hotcue | Hotloop;
 /**
  * Represents the contents of a playlist
  */

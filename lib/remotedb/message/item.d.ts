@@ -73,7 +73,7 @@ export declare enum ItemType {
 /**
  * All items have 12 arguments of these types
  */
-declare type ItemArgs = [
+type ItemArgs = [
     NumberField,
     NumberField,
     NumberField,
@@ -99,7 +99,7 @@ declare const makeItemData: (args: ItemArgs) => {
     type: ItemType;
     artworkId: number;
 };
-declare type ItemData = ReturnType<typeof makeItemData>;
+type ItemData = ReturnType<typeof makeItemData>;
 /**
  * Maps item types to structured objects
  */
@@ -513,13 +513,13 @@ declare const transformItem: {
  * Represents a generic Item, specialized to a specific item by providing a
  * ItemType to the template.
  */
-export declare type Item<T extends ItemType> = ReturnType<(typeof transformItem)[T]> & {
+export type Item<T extends ItemType> = ReturnType<(typeof transformItem)[T]> & {
     type: T;
 };
 /**
  * Maps ItemTypes to Items
  */
-export declare type Items = {
+export type Items = {
     [T in keyof typeof transformItem]: Item<T>;
 };
 /**

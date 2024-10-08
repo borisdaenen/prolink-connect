@@ -8,7 +8,7 @@ import { Device, DeviceID, MediaSlot, TrackType } from "../types";
 import { Response } from './message/types';
 import { Message } from './message';
 import { HandlerArgs, HandlerReturn, queryHandlers } from './queries';
-declare type Await<T> = T extends PromiseLike<infer U> ? U : T;
+type Await<T> = T extends PromiseLike<infer U> ? U : T;
 /**
  * Menu target specifies where a menu should be "rendered" This differs based
  * on the request being made.
@@ -27,14 +27,14 @@ export interface QueryDescriptor {
 /**
  * Used internally when making queries.
  */
-export declare type LookupDescriptor = QueryDescriptor & {
+export type LookupDescriptor = QueryDescriptor & {
     targetDevice: Device;
     hostDevice: Device;
 };
 /**
  * Used to specify the query type that is being made
  */
-export declare type Query = keyof typeof queryHandlers;
+export type Query = keyof typeof queryHandlers;
 export declare const Query: {
     readonly [x: number]: string;
     readonly GetMetadata: import("./message/types").DataRequest.GetMetadata;

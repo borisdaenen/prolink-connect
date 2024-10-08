@@ -37,26 +37,26 @@ export declare class BaseField {
     static bytesToRead: number | ((reportedLength: number) => number);
     ['constructor']: typeof BaseField;
 }
-export declare type NumberField<T extends number = number> = BaseField & {
+export type NumberField<T extends number = number> = BaseField & {
     /**
      * The fields number value
      */
     value: T;
 };
-export declare type StringField<T extends string = string> = BaseField & {
+export type StringField<T extends string = string> = BaseField & {
     /**
      * The fields decoded string value
      */
     value: T;
 };
-export declare type BinaryField = BaseField & {
+export type BinaryField = BaseField & {
     /**
      * The binary value encapsulated in the field
      */
     value: Buffer;
 };
-export declare type Field = NumberField | StringField | BinaryField;
-declare type NumberFieldType = FieldType.UInt32 | FieldType.UInt16 | FieldType.UInt8;
+export type Field = NumberField | StringField | BinaryField;
+type NumberFieldType = FieldType.UInt32 | FieldType.UInt16 | FieldType.UInt8;
 /**
  * Field representing a UInt8
  */

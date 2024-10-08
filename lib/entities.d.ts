@@ -48,7 +48,7 @@ interface PlaylistEntryFks {
     playlistId: number;
     trackId: number;
 }
-export declare type PlaylistEntry<withFKs extends EntityFK = EntityFK.WithRelations> = {
+export type PlaylistEntry<withFKs extends EntityFK = EntityFK.WithRelations> = {
     id: number;
     sortIndex: number;
 } & (withFKs extends EntityFK.WithFKs ? PlaylistEntryFks : PlaylistEntryRelations);
@@ -82,7 +82,7 @@ interface TrackFks {
  * Note, fields that are not optional will be set for all database request
  * methods.
  */
-export declare type Track<withFKs extends EntityFK = EntityFK.WithRelations> = {
+export type Track<withFKs extends EntityFK = EntityFK.WithRelations> = {
     id: number;
     title: string;
     duration: number;

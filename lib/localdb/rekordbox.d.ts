@@ -8,7 +8,7 @@ import { BeatGrid, CueAndLoop, WaveformHD } from "../types";
  * you would just read the file, but in the case of the prolink network, this
  * would handle loading the file over NFS.
  */
-declare type AnlzResolver = (path: string) => Promise<Buffer>;
+type AnlzResolver = (path: string) => Promise<Buffer>;
 /**
  * Data returned from loading DAT anlz files
  */

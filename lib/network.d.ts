@@ -47,8 +47,8 @@ interface ConstructOpts {
 /**
  * Services that are not accessible until connected
  */
-declare type ConnectedServices = 'statusEmitter' | 'control' | 'db' | 'localdb' | 'remotedb' | 'mixstatus';
-export declare type ConnectedProlinkNetwork = ProlinkNetwork & {
+type ConnectedServices = 'statusEmitter' | 'control' | 'db' | 'localdb' | 'remotedb' | 'mixstatus';
+export type ConnectedProlinkNetwork = ProlinkNetwork & {
     [P in ConnectedServices]: NonNullable<ProlinkNetwork[P]>;
 } & {
     state: NetworkState.Connected;

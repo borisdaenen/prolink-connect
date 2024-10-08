@@ -14,7 +14,7 @@ interface HandlerOpts<A extends Record<string, unknown> = Record<string, unknown
     span: Span;
     args: A;
 }
-declare type TrackQueryOpts = HandlerOpts<{
+type TrackQueryOpts = HandlerOpts<{
     /**
      * The ID of the track to query for
      */
@@ -62,7 +62,7 @@ declare function getCueAndLoopsAdv(opts: TrackQueryOpts): Promise<import("..").C
  * Lookup the track information, currently just returns the track path
  */
 declare function getTrackInfo(opts: TrackQueryOpts): Promise<string>;
-declare type PlaylistQueryOpts = HandlerOpts<{
+type PlaylistQueryOpts = HandlerOpts<{
     /**
      * The ID of the playlist to query for. May be left blank to query the root
      * playlist folder.
@@ -94,7 +94,7 @@ export declare const queryHandlers: {
     11268: typeof getWaveformHD;
     4357: typeof getPlaylist;
 };
-export declare type Handler<T extends Query> = (typeof queryHandlers)[T];
-export declare type HandlerArgs<T extends Query> = Parameters<Handler<T>>[0]['args'];
-export declare type HandlerReturn<T extends Query> = ReturnType<Handler<T>>;
+export type Handler<T extends Query> = (typeof queryHandlers)[T];
+export type HandlerArgs<T extends Query> = Parameters<Handler<T>>[0]['args'];
+export type HandlerReturn<T extends Query> = ReturnType<Handler<T>>;
 export {};

@@ -48,7 +48,7 @@ export interface Device {
   macAddr: Uint8Array;
   ip: Address4;
   lastActive?: Date;
-  enableCDJ3000Compatibility: boolean;
+  enableCDJ3000Compatibility?: boolean;
 }
 
 /**

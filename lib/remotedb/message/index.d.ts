@@ -9,8 +9,8 @@ interface Options<T extends MessageType> {
     type: T;
     args: Field[];
 }
-declare type ResponseType<T> = T extends Response ? T : never;
-declare type Data<T> = ReturnType<(typeof responseTransform)[ResponseType<T>]>;
+type ResponseType<T> = T extends Response ? T : never;
+type Data<T> = ReturnType<(typeof responseTransform)[ResponseType<T>]>;
 /**
  * Representation of a set of fields sequenced into a known message format.
  */

@@ -66,7 +66,7 @@ interface MixstatusEvents {
      */
     setEnded: () => void;
 }
-declare type Emitter = StrictEventEmitter<EventEmitter, MixstatusEvents>;
+type Emitter = StrictEventEmitter<EventEmitter, MixstatusEvents>;
 /**
  * MixstatusProcessor is a configurable processor which when fed device state
  * will attempt to accurately determine events that happen within the DJ set.

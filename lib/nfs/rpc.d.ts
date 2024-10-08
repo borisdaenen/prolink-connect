@@ -15,7 +15,7 @@ interface RpcCall {
  *
  * @see https://www.npmjs.com/package/promise-retry#promiseretryfn-options
  */
-export declare type RetryConfig = OperationOptions & {
+export type RetryConfig = OperationOptions & {
     /**
      * Time in milliseconds to wait before a RPC transaction should timeout.
      * @default 1000
@@ -44,7 +44,7 @@ export declare class RpcConnection {
     call({ port, ...call }: RpcCall): Promise<Buffer>;
     disconnect(): Promise<void>;
 }
-declare type RpcProgramCall = Pick<RpcCall, 'procedure' | 'data'>;
+type RpcProgramCall = Pick<RpcCall, 'procedure' | 'data'>;
 /**
  * RpcProgram is constructed with specialization details for a specific RPC
  * program. This should be used to avoid having to repeat yourself for calls

@@ -15,8 +15,8 @@ interface StatusEvents {
      */
     mediaSlot: (info: MediaSlotInfo) => void;
 }
-declare type Emitter = StrictEventEmitter<EventEmitter, StatusEvents>;
-declare type MediaSlotOptions = Parameters<typeof makeMediaSlotRequest>[0];
+type Emitter = StrictEventEmitter<EventEmitter, StatusEvents>;
+type MediaSlotOptions = Parameters<typeof makeMediaSlotRequest>[0];
 /**
  * The status emitter will report every time a device status is received
  */
