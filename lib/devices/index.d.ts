@@ -7,7 +7,7 @@ import { Device, DeviceID } from "../types";
 interface Config {
     /**
      * Time in milliseconds after which a device is considered to have
-     * disconnected if it has not broadcast an announcment.
+     * disconnected if it has not broadcast an announcement.
      *
      * @default 10000 ms
      */

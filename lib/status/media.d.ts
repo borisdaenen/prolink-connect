@@ -15,7 +15,7 @@ interface Options {
     slot: MediaSlot;
 }
 /**
- * Get information about the media connected to the specifed slot on the
+ * Get information about the media connected to the specified slot on the
  * device.
  */
 export declare const makeMediaSlotRequest: ({ hostDevice, device, slot }: Options) => Uint8Array;

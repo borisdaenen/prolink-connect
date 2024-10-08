@@ -31,6 +31,7 @@ export interface Device {
     macAddr: Uint8Array;
     ip: Address4;
     lastActive?: Date;
+    enableCDJ3000Compatibility: boolean;
 }
 /**
  * Details of a particular media slot on the CDJ
@@ -290,7 +291,7 @@ export interface PlaylistContents {
 export declare enum NetworkState {
     /**
      * The network is offline when we don't have an open connection to the network
-     * (no connection to the announcment and or status UDP socket is present).
+     * (no connection to the announcement and or status UDP socket is present).
      */
     Offline = 0,
     /**
@@ -304,7 +305,7 @@ export declare enum NetworkState {
     Connected = 2,
     /**
      * The network may have failed to connect if we aren't able to open the
-     * announcment and or status UDP socket.
+     * announcement and or status UDP socket.
      */
     Failed = 3
 }

@@ -19,7 +19,7 @@ export interface BaseField {
      */
     data: Buffer;
     /**
-     * Corce the field into a buffer. This differes from reading the data
+     * Corce the field into a buffer. This differs from reading the data
      * property in that it will include the field type header.
      */
     readonly buffer: Buffer;
@@ -31,7 +31,7 @@ export declare class BaseField {
     static type: FieldType;
     /**
      * The number of bytes to read for this field. If the field is not a fixed size,
-     * set this to a function which will recieve the UInt32 value just after
+     * set this to a function which will receive the UInt32 value just after
      * reading the field type, returning the next number of bytes to read.
      */
     static bytesToRead: number | ((reportedLength: number) => number);

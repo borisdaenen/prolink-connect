@@ -10,7 +10,7 @@ import { Message } from './message';
 import { HandlerArgs, HandlerReturn, queryHandlers } from './queries';
 declare type Await<T> = T extends PromiseLike<infer U> ? U : T;
 /**
- * Menu target specifies where a menu should be "rendered" This differes based
+ * Menu target specifies where a menu should be "rendered" This differs based
  * on the request being made.
  */
 export declare enum MenuTarget {
@@ -107,11 +107,11 @@ interface QueryOpts<T extends Query> {
      */
     query: T;
     /**
-     * Arguments to pass to the query. These are query speciifc
+     * Arguments to pass to the query. These are query specific
      */
     args: HandlerArgs<T>;
     /**
-     * The sentry span to assicate the query with
+     * The sentry span to associate the query with
      */
     span?: Span;
 }

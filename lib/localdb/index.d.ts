@@ -52,7 +52,7 @@ interface DatabaseEvents {
      *
      * There is a period of time between hydrationProgress reporting 100% copletion,
      * and the database being flushed, so it may be useful to wait for this event
-     * before considering the databas to be fully hydrated.
+     * before considering the database to be fully hydrated.
      */
     hydrationDone: (opts: HydrationDoneOpts) => void;
 }

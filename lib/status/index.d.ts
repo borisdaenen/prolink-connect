@@ -18,12 +18,12 @@ interface StatusEvents {
 declare type Emitter = StrictEventEmitter<EventEmitter, StatusEvents>;
 declare type MediaSlotOptions = Parameters<typeof makeMediaSlotRequest>[0];
 /**
- * The status emitter will report every time a device status is recieved
+ * The status emitter will report every time a device status is received
  */
 declare class StatusEmitter {
     #private;
     /**
-     * @param statusSocket A UDP socket to recieve CDJ status packets on
+     * @param statusSocket A UDP socket to receive CDJ status packets on
      */
     constructor(statusSocket: Socket);
     on: Emitter['on'];

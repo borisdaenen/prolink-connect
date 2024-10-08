@@ -1,6 +1,6 @@
 import { EntityFK, Playlist, PlaylistEntry, Track } from "../entities";
 /**
- * Table names availble
+ * Table names available
  */
 export declare enum Table {
     Artist = "artist",

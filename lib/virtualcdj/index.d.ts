@@ -6,7 +6,7 @@ import { Device, DeviceID } from "../types";
 /**
  * Constructs a virtual CDJ Device.
  */
-export declare const getVirtualCDJ: (iface: NetworkInterfaceInfoIPv4, id: DeviceID) => Device;
+export declare const getVirtualCDJ: (iface: NetworkInterfaceInfoIPv4, id: DeviceID, enableCDJ3000Compatibility: boolean) => Device;
 /**
  * Returns a mostly empty-state status packet. This is currently used to report
  * the virtual CDJs status, which *seems* to be required for the CDJ to send
